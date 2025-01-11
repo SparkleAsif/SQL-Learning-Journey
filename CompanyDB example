@@ -1,0 +1,100 @@
+CREATE DATABASE CompanyDB;
+USE CompanyDB;
+Create Table
+sql
+Copy code
+CREATE TABLE Employees (
+    EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Position VARCHAR(50),
+    Salary DECIMAL(10, 2),
+    HireDate DATE
+);
+Insert Data
+sql
+Copy code
+INSERT INTO Employees (Name, Position, Salary, HireDate)
+VALUES ('John Doe', 'Manager', 50000.00, '2023-01-10');
+
+INSERT INTO Employees (Name, Position, Salary, HireDate)
+VALUES ('Jane Smith', 'Developer', 45000.00, '2022-08-15');
+Select with Filtering
+sql
+Copy code
+SELECT * FROM Employees WHERE Salary > 45000;
+Select with Sorting
+sql
+Copy code
+SELECT Name, Position FROM Employees ORDER BY HireDate ASC;
+Update Data
+sql
+Copy code
+UPDATE Employees SET Position = 'Senior Developer' WHERE Name = 'Jane Smith';
+Delete Data
+sql
+Copy code
+DELETE FROM Employees WHERE Position = 'Intern';
+Add Column to Table
+sql
+Copy code
+ALTER TABLE Employees ADD COLUMN Department VARCHAR(50);
+Insert into a New Column
+sql
+Copy code
+UPDATE Employees SET Department = 'IT' WHERE Position = 'Developer';
+Drop Column
+sql
+Copy code
+ALTER TABLE Employees DROP COLUMN Department;
+Aggregate Functions
+Count:
+sql
+Copy code
+SELECT COUNT(*) AS TotalEmployees FROM Employees;
+Average:
+sql
+Copy code
+SELECT AVG(Salary) AS AverageSalary FROM Employees;
+Sum:
+sql
+Copy code
+SELECT SUM(Salary) AS TotalSalary FROM Employees;
+Create Table with Foreign Key
+sql
+Copy code
+CREATE TABLE Departments (
+    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
+    DepartmentName VARCHAR(50)
+);
+
+CREATE TABLE Staff (
+    StaffID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50),
+    DepartmentID INT,
+    FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID)
+);
+Insert Data with Foreign Key
+sql
+Copy code
+INSERT INTO Departments (DepartmentName) VALUES ('IT'), ('HR'), ('Finance');
+
+INSERT INTO Staff (Name, DepartmentID)
+VALUES ('Alice', 1), ('Bob', 2), ('Charlie', 3);
+Join Tables
+sql
+Copy code
+SELECT Staff.Name, Departments.DepartmentName
+FROM Staff
+JOIN Departments ON Staff.DepartmentID = Departments.DepartmentID;
+Group By
+sql
+Copy code
+SELECT DepartmentID, COUNT(*) AS TotalStaff
+FROM Staff
+GROUP BY DepartmentID;
+Drop Table
+sql
+Copy code
+DROP TABLE Staff;
+DROP TABLE Departments;
+Practice these commands in phpMyAdmin under the SQL tab for your database. They cover essential operations and more complex ones like joins and grouping!
