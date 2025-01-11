@@ -1,0 +1,49 @@
+Create Table:
+
+sql
+Copy code
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT,
+    Grade CHAR(1)
+);
+Insert Data:
+
+sql
+Copy code
+INSERT INTO Students (StudentID, Name, Age, Grade)
+VALUES (1, 'Alice', 20, 'A');
+Select Data:
+
+sql
+Copy code
+SELECT Name, Age FROM Students WHERE Grade = 'A';
+Update Data:
+
+sql
+Copy code
+UPDATE Students SET Age = 21 WHERE Name = 'Alice';
+Delete Data:
+
+sql
+Copy code
+DELETE FROM Students WHERE Grade = 'F';
+Drop Table:
+
+sql
+Copy code
+DROP TABLE Students;
+Join Tables:
+
+sql
+Copy code
+SELECT Students.Name, Courses.CourseName
+FROM Students
+JOIN Enrollments ON Students.StudentID = Enrollments.StudentID
+JOIN Courses ON Enrollments.CourseID = Courses.CourseID;
+
+
+
+
+
