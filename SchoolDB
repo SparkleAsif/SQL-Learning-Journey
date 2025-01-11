@@ -1,0 +1,84 @@
+ example for School DB
+
+1. Create a New Database
+sql
+Copy code
+CREATE DATABASE SchoolDB;
+2. Select the Database
+sql
+Copy code
+USE SchoolDB;
+3. Create Tables
+a. Create a Students table:
+sql
+Copy code
+CREATE TABLE Students (
+    StudentID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Class VARCHAR(10),
+    DateOfBirth DATE
+);
+b. Create a Subjects table:
+sql
+Copy code
+CREATE TABLE Subjects (
+    SubjectID INT AUTO_INCREMENT PRIMARY KEY,
+    SubjectName VARCHAR(100) NOT NULL
+);
+c. Create an Enrollments table with a foreign key:
+sql
+Copy code
+CREATE TABLE Enrollments (
+    EnrollmentID INT AUTO_INCREMENT PRIMARY KEY,
+    StudentID INT,
+    SubjectID INT,
+    EnrollmentDate DATE,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID)
+);
+4. Insert Data
+a. Insert data into Students:
+sql
+Copy code
+INSERT INTO Students (Name, Class, DateOfBirth)
+VALUES ('Alice', '10A', '2008-05-20'),
+       ('Bob', '9B', '2009-07-15'),
+       ('Charlie', '10A', '2008-03-25');
+b. Insert data into Subjects:
+sql
+Copy code
+INSERT INTO Subjects (SubjectName)
+VALUES ('Mathematics'),
+       ('Science'),
+       ('History');
+c. Insert data into Enrollments:
+sql
+Copy code
+INSERT INTO Enrollments (StudentID, SubjectID, EnrollmentDate)
+VALUES (1, 1, '2024-01-05'),
+       (2, 2, '2024-01-06'),
+       (3, 1, '2024-01-07');
+5. Query the Data
+a. List all students:
+sql
+Copy code
+SELECT * FROM Students;
+b. Get enrollments with student names and subjects:
+sql
+Copy code
+SELECT Students.Name, Subjects.SubjectName, Enrollments.EnrollmentDate
+FROM Enrollments
+JOIN Students ON Enrollments.StudentID = Students.StudentID
+JOIN Subjects ON Enrollments.SubjectID = Subjects.SubjectID;
+c. Count students in each class:
+sql
+Copy code
+SELECT Class, COUNT(*) AS TotalStudents
+FROM Students
+GROUP BY Class;
+6. Drop the Database
+To delete the entire database:
+
+sql
+Copy code
+DROP DATABASE SchoolDB;
